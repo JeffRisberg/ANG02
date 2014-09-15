@@ -1,34 +1,35 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="products">
 <head>
+    <title>Home Page</title>
     <meta charset=utf-8/>
-    <style>
-        body {
-            padding: 20px;
-        }
 
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <script src="js/angular.js"></script>
+    <script src="app.js"></script>
+    <script src="controllers.js"></script>
+    <script src="services.js"></script>
+
+    <style>
         .search {
             margin-left: 10px;
         }
     </style>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
-    <link rel="stylesheet" href="css/styles.css">
-    <script src="js/angular.js"></script>
-    <script src="ang02.js"></script>
-    <title>Home Page</title>
 </head>
-<body ng-controller="ctrl">
+<body ng-controller="controllers">
 <div id="logo"></div>
 
 <div id="container">
-    <div style="overflow:hidden;margin-bottom:20px;">
+    <div style="overflow:hidden; margin-bottom:20px;">
         <div style="float:left">
             <button class="btn btn-primary" ng-click="appState = 'home'">
                 Home
             </button>
         </div>
-        <div style="margin-left:15px;float:left;">
+        <div style="margin-left:15px; float:left;">
             <button class="btn btn-primary" ng-click="appState = 'newProduct'">
                 Create Product
             </button>
@@ -46,6 +47,7 @@
 
         <table class="table table-striped">
             <tr ng-repeat="product in products | filter : search" ng-class="{'muted':isTemp($index)}">
+                <td>{{$index+1}}</td>
                 <td>{{product.name}}</td>
                 <td>
                     <button class="btn btn-danger btn-mini" ng-click="deleteProduct(product)">

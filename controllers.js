@@ -1,5 +1,5 @@
-function ctrl($scope, $filter) {
-    $scope.greeting = "Hello";
+function controllers($scope, $filter) {
+
     $scope.appState = "home";
 
     $scope.features = [
@@ -25,6 +25,6 @@ function ctrl($scope, $filter) {
         $scope.products.push({name: $scope.addName});
         $scope.addName = "";
 
-        $scope.showHome();
+        $scope.appState = "home";
     };
 }
