@@ -19,7 +19,7 @@
         }
     </style>
 </head>
-<body ng-controller="controllers">
+<body ng-controller="HomeController">
 <div id="logo"></div>
 
 <div id="container">
@@ -30,8 +30,8 @@
             </button>
         </div>
         <div style="margin-left:15px; float:left;">
-            <button class="btn btn-primary" ng-click="appState = 'newProduct'">
-                Create Product
+            <button class="btn btn-primary" ng-click="appState = 'addItem'">
+                Add Item
             </button>
         </div>
     </div>
@@ -46,11 +46,13 @@
 			</span>
 
         <table class="table table-striped">
-            <tr ng-repeat="product in products | filter : search" ng-class="{'muted':isTemp($index)}">
-                <td>{{$index+1}}</td>
-                <td>{{product.name}}</td>
+            <tr ng-repeat="item in items | filter : search" ng-class="{'muted':isTemp($index)}">
+                <td>{{item.title}}</td>
+                <td><input ng-model='item.quantity'></td>
+                <td style="text-align: right">{{item.price | currency}}</td>
+                <td style="text-align: right">{{item.price * item.quantity | currency}}</td>
                 <td>
-                    <button class="btn btn-danger btn-mini" ng-click="deleteProduct(product)">
+                    <button class="btn btn-danger btn-mini" ng-click="remove($index)">
                         <i class="glyphicon glyphicon-trash glyphicon-white"></i>
                     </button>
                 </td>
@@ -58,35 +60,17 @@
         </table>
     </div>
 
-    <!-- Create Product -->
-    <div ng-show="appState == 'newProduct'">
-        <h4>Create Product</h4>
+    <!-- Add Item -->
+    <div ng-show="appState == 'addItem'">
+        <h4>Add Item</h4>
 
-        Product Name: <input type="text" class="span2" placeholder="Product Name" ng-model="addName">
-
-        <div class="search input-prepend" ng-class="{'input-append':search}" style="margin-top:20px;">
-            Search for Feature
-				<span class="add-on">
-					<i class="glyphicon glyphicon-search"></i>
-				</span>
-            <input type="text" class="span2" placeholder="Feature Search" ng-model="featuresearch">
+        <div style="padding: 20px;">
+            Item Name: <input type="text" class="span2" placeholder="ItemName" ng-model="addName">
+            <br/>
+            Item Price: <input type="text" class="span2" placeholder="ItemPrice" ng-model="addPrice">
         </div>
-        <div style="height:200px;overflow-y:auto;border:1px solid #AAA;">
-            <table class="table table-striped">
-                <tr ng-repeat="feature in features | filter : featuresearch">
-                    <td>{{feature.name}}</td>
-                    <td>
-                        <input type="checkbox" ng-model="feature.selected">
-                    </td>
-                </tr>
-            </table>
-        </div>
-        Selected Feature: <span ng-repeat="feature in features| filter : {'selected':true}">{{feature.name}},</span>
-
-        <br/>
-        <br/>
-        <button class="btn btn-primary" ng-click="saveProduct()">
-            Create Product
+        <button class="btn btn-primary" ng-click="addItem()">
+            Add Item
         </button>
     </div>
 </div>

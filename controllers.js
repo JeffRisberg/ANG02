@@ -1,29 +1,21 @@
-function controllers($scope, $filter) {
+function HomeController($scope, $filter) {
 
     $scope.appState = "home";
 
-    $scope.features = [
-        {name: 'Talks', selected: false},
-        {name: 'Listens', selected: false},
-        {name: 'Ties its shoes', selected: false},
-        {name: 'Goes on walks', selected: false}  ,
-        {name: 'Jumps', selected: false}
+    $scope.items = [
+        {title: 'Paint pots', quantity: 8, price: 3.95},
+        {title: 'Polka dots', quantity: 17, price: 12.95},
+        {title: 'Pebbles', quantity: 5, price: 6.95}
     ];
 
-    $scope.products = [
-        {name: 'Collie Dog', features: [], selected: false},
-        {name: 'Chimp', features: [], selected: false},
-        {name: 'Parrot', features: [], selected: false},
-        {name: 'Kangaroo', features: [], selected: false}
-    ];
+    $scope.remove = function (index) {
+        $scope.items.splice(index, 1);
+    }
 
-    $scope.deleteProduct = function (product) {
-        $scope.products.splice($scope.products.indexOf(product), 1);
-    };
-
-    $scope.saveProduct = function () {
-        $scope.products.push({name: $scope.addName});
+    $scope.addItem = function () {
+        $scope.items.push({title: $scope.addName, quantity: 1, price: $scope.addPrice});
         $scope.addName = "";
+        $scope.addPrice = "";
 
         $scope.appState = "home";
     };
