@@ -58,6 +58,20 @@
                 </td>
             </tr>
         </table>
+        <table>
+            <tr>
+                <td>Total:</td>
+                <td style="text-align:right">{{totalCart() | currency}}</td>
+            </tr>
+            <tr>
+                <td>Discount:</td>
+                <td style="text-align:right">{{discount | currency}}</td>
+            </tr>
+            <tr>
+                <td>Subtotal:</td>
+                <td style="text-align:right">{{subtotal() | currency}}</td>
+            </tr>
+        </table>
     </div>
 
     <!-- Add Item -->
