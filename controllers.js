@@ -1,4 +1,4 @@
-function HomeController($scope, $filter) {
+myApp.controller('HomeController', ['$scope', function ($scope) {
 
     $scope.appState = "home";
 
@@ -12,7 +12,7 @@ function HomeController($scope, $filter) {
 
     $scope.remove = function (index) {
         $scope.items.splice(index, 1);
-    }
+    };
 
     $scope.addItem = function () {
         $scope.items.push({title: $scope.addName, quantity: 1, price: $scope.addPrice});
@@ -28,7 +28,7 @@ function HomeController($scope, $filter) {
             total = total + $scope.items[i].price * $scope.items[i].quantity;
         }
         return total;
-    }
+    };
 
     $scope.subtotal = function () {
         return $scope.totalCart() - $scope.discount;
@@ -39,4 +39,4 @@ function HomeController($scope, $filter) {
     }
 
     $scope.$watch($scope.totalCart, calculateDiscount);
-}
+}]);
